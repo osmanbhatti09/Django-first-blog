@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Django first blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Django first blog</a></h1>
-        </header>
+{% extends 'base.html' %}
 
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My first post</a></h2>
-            <p>In 2021, Milwaukee, Wisconsin, reported a significant increase in car thefts, the majority of the cars stolen being Kias and Hyundais, and a lot of the suspected thieves being too young to drive. Videos began to surface on social media of young people joyriding in these cars, speeding and swerving, sometimes hanging out of windows. These were not sophisticated thieves stealing cars to strip and sell for parts. They were doing it for views and clout. They became known as “Kia Boys.”</p>
-        </article>
 
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My second post</a></h2>
-            <p>It’s safe to assume that 17-year-old Markell Hughes wasn’t too worried about getting caught for stealing cars last year. After all, he lives in Milwaukee, where just 11 percent of reported car thefts resulted in an arrest in 2021 and only 5 percent were prosecuted. But Hughes appeared in a documentary about the so-called “Kia Boys,” who take advantage of an exploit that makes certain Kia and Hyundai models easy to steal. The Kia Boys often joyride around in the stolen cars, usually driving dangerously and usually filming themselves doing it. The documentary was a hit on YouTube, and shortly after it was posted, someone called a police tip line and gave them Hughes’s name.</p>
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h2>
+            <p>"{{ post.text|linebreaksbr }}", is the series finale of the television sitcom Friends. The episode serves as the seventeenth and eighteenth episode of season ten; the episode's two parts were classified as two separate episodes. It was written by series creators David Crane and Marta Kauffman,</p>
         </article>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
